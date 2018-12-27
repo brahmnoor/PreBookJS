@@ -16,7 +16,7 @@ Important Note - This is not ready for production, because it has multiple probl
 4. Adding email verification.
 
 ### How to set it up
-1. Unzip the database.zip file into the same folder having other stuff.
+1. Unzip the data.zip file into the same folder having other stuff.
 2. Open terminal in the folder, and run "npm install" to install the dependencies
 3. Open a terminal in the MongoDB installation on your device, and run "./bin/mongod --dbpath YourPath/PreBook/data", where YourPath/PreBook/data is the data folder in the project folder.  (for 64-bit).
 4. Start the server using "npm start" in the first terminal window.
