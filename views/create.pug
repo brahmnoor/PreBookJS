@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  nav
+    .logo
+      img(src='/images/logo.png')
+      h1  PreBook
+      span
+        i Cheap, Reliable, Instant
+  main
+    .bar
+      h2 Welcome to PreBook (Sign Up)
+      span.aside
+        i
+          | Fill out the information below to sign up for an account, and start booking tickets to your favorite movies
+    form#createform(method='post', action='/createaccount/create', onsubmit='return validateForm()')
+      span Username
+      input#username.form-input(type='text', name='username', placeholder='Desired Username')
+      span Password
+      input#password.form-input(type='password', name='password', placeholder='Desired Password')
+      button#submit.form-button(type='submit', name='submit') Sign Up
+      a(href='/')
+        button.form-button.aside-button(type='button', name='back') Back
+        
+  script(src='/javascripts/createScript.js')

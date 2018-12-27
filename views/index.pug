@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  nav
+    .logo
+      img(src='/images/logo.png')
+      h1  PreBook
+      span
+        i Cheap, Reliable, Instant
+  main
+    .bar
+      h2 Login
+      span.aside
+        i ...if you're already a member.
+    form#loginform(method='post', action='verifyLogin')
+      input.form-input(type='text', name='username', placeholder='Username', required='')
+      input.form-input(type='password', name='password', placeholder='Password', required='')
+      button#submit.form-button(type='submit', name='submit') Submit
+      a(href='createaccount')
+        button.form-button.aside-button(type='button', name='create') Create an account
+  
+  script(src='/javascripts/indexScript.js')

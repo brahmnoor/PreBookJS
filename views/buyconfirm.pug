@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  include loggedinNav.pug
+  main
+    .bar
+      h2 Order Confirmed
+      span.aside
+        i ...here&apos;s your order information.
+    - var sum = 0
+    - for (var i = 0; i < seats.length; i++)
+      - var seatRow = seats[i][0]
+      - var seatCol = seats[i][2]
+      - var typeString
+      - if (types[i] == '75') typeString = "75$ (Adult)"; else typeString = "50$ (Student/Senior)"
+      - sum = sum + parseInt(types[i])
+      section
+        p
+          b Cinema
+          | : Broadway
+        p
+          b House
+          | : House #{currentBroadcast.houseName}
+        p
+          b SeatNo
+          | : #{seatRow}#{seatCol}
+        p
+          b Film
+          | : #{currentFilm.filmName}
+        p
+          b Category
+          | : #{currentFilm.category}
+        p
+          b Show Time
+          | : #{currentBroadcast.date} #{currentBroadcast.time} (#{currentBroadcast.day})
+        p
+          b Ticket Fee
+          | : #{typeString}
+    section(style='padding: 1rem 3rem;')
+      h3 Total Fee: $ #{sum}
+      p
+        | Please present valid proof of age/status when purchasing Student or Senior tickets before entering the cinema house.
+      a(href='/main')
+        button.form-button(type='button' name='okay') Okay!

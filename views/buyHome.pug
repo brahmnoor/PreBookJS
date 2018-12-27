@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  include loggedinNav.pug
+  main
+    .bar
+      h2 Movies
+      span.aside
+        i ...current screenings in town.
+    each singleFilm in filmArray
+      section.movie
+        .movie-left
+          img(src='/images/' + singleFilm.poster)
+        .movie-right
+          h1= singleFilm.filmName
+          h3
+            b Description
+            | : #{singleFilm.description}
+          h4
+            b Director
+            | : #{singleFilm.director}
+          h4
+            b Duration
+            | : #{singleFilm.duration}
+          h4
+            b Category
+            | : #{singleFilm.category}
+          h4
+            b Language
+            | : #{singleFilm.language}
+          form(style='padding:0;' method='post' action='/buy/seatplantry')
+            input(type='hidden' name='filmId' value= singleFilm._id)
+            select(name='broadcastId')
+              each broadcast in broadcastArray
+                if (broadcast.filmName == singleFilm.filmName)
+                  - textToDisplay = broadcast.date + " " + broadcast.time + " (" + broadcast.day + ") House " + broadcast.houseName
+                  option(value=broadcast._id) #{textToDisplay}
+            button#submit.movie-button(type='submit' name='submit') Book Show

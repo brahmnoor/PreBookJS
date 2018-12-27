@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  include loggedinNav.pug
+  main
+    .bar
+      h2 Previous Orders
+      span.aside
+        i Your Username - #{username}
+    div#contain 
+    script.
+      var ticketsArray=[#{ticketsArray}]
+    script(src="/javascripts/historyScript.js")
+      

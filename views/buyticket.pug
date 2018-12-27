@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  include loggedinNav.pug
+  main
+    .bar
+      h2 Your Cart
+      span.aside
+        i ...almost there, just one click away.
+    section
+      p
+        b Cinema
+        | : Broadway
+      p
+        b House
+        | : House #{currentBroadcast.houseName}
+      p
+        b Film
+        | : #{currentFilm.filmName}
+      p
+        b Category
+        | : #{currentFilm.category}
+      p
+        b Show Time
+        | : #{currentBroadcast.date} #{currentBroadcast.time} (#{currentBroadcast.day})
+    section.clearfix
+      form(method='post' action='/buy/confirm')
+        input(type='hidden' name='broadcastId' value= currentBroadcast._id)
+        input(type='hidden' name='filmId' value= currentFilm._id)
+        each singleSeat in seats
+          - var seatRow = singleSeat[0]
+          - var seatCol = singleSeat[2]
+          h3(style='padding: 0 1rem 0.3rem 0.5rem; float:left; width:10%; box-sizing: border-box;') #{seatRow}#{seatCol}: 
+          select(name='type' style='width:90%;')
+            option(value='75')
+              | Adult ($75)
+            option(value='50')
+              | Student/Senior ($50)
+          input(type='hidden' name='seat' value= seatRow + '|' + seatCol)
+          .clearfix
+        .clearfix
+        button#submit.two-button-one(type='submit' name='submit') Confirm Order
+        a(href='/buy')
+          button.two-button-two(type='button' name='cancel') Cancel

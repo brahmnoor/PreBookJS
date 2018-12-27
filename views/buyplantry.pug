@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  include loggedinNav.pug
+  main
+    .bar
+      h2 Ticketing
+      span.aside
+        i ...get your lucky seat, instantly.
+    section
+      p
+        b Cinema
+        | : Broadway
+      p
+        b House
+        | : House #{currentHouse.houseName}
+      p
+        b Film
+        | : #{currentFilm.filmName}
+      p
+        b Category
+        | : #{currentFilm.category}
+      p
+        b Show Time
+        | : #{currentBroadcast.date} #{currentBroadcast.time} (#{currentBroadcast.day})
+    section.clearfix
+      form(method='post' action='/buy/buyticket' onsubmit='return check();')
+        input(type='hidden' name='filmId' value= currentFilm._id)
+        input(type='hidden' name='broadcastId' value= currentBroadcast._id)
+        - for (var row = currentHouse.houseRow; row > 0; row--)
+          .ticketing-row
+            - var rowName = String.fromCharCode(64 + row);
+            - for (var col = 1; col <= currentHouse.houseCol; col++)
+              // row is a number representing the current row, while col is the number represeting the current col
+              - if (alreadyBoughtMap.includes(rowName + "|" + col))
+                .ticketing-col.reserved Sold #{rowName}#{col}
+              - else
+                .ticketing-col
+                  input.checkbox(type='checkbox' name='seat' value= rowName + '|' + col )
+                  | #{rowName}#{col}
+        .ticketing-row
+          .ticketing-col.screen
+            | Screen
+        button#submit.two-button-one(type='submit' name='submit') Select Seat(s)
+        a(href='/buy')
+          button.two-button-two(type='button' name='cancel') Cancel
+  script(src="/javascripts/planScript.js")
+        

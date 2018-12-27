@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  nav
+    .logo
+      img(src='/images/logo.png')
+      h1  PreBook
+      span
+        i Cheap, Reliable, Instant
+  main
+    .bar
+      h2 Oops...
+      span.aside
+        i= errorMessage
+    i.fas.fa-exclamation-triangle.full-icon
+  script.
+    setTimeout(function() {
+      window.location = '#{redirectUrl}';
+    }, 3000);

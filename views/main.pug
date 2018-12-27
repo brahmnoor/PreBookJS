@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  include loggedinNav.pug
+  main
+    .bar
+      h2
+        | Welcome, #{username}!
+      span.aside
+        i ...welcome home.
+    p
+      | Want to book a movie ticket? You've come to the right place. Find movies, get showtimes and buy your tickets ahead of time to ensure you get the best seats--without having to wait in line.
+    a(href='buy')
+      button.form-button Book a movie ticket now

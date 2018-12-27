@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  nav
+    .logo
+      img(src='/images/logo.png')
+      h1  PreBook
+      span
+        i Cheap, Reliable, Instant
+  main
+    .bar
+      h2 Yaay...
+      span.aside
+        i= successMessage
+    i.fas.fa-check-square.full-icon
+  script.
+    setTimeout(function() {
+      window.location = '#{redirectUrl}';
+    }, 3000);

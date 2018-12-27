@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  include loggedinNav.pug
+  main
+    .bar
+      h2 Comments
+      span.aside
+        i ...what do you and other people think.
+    section
+      form(method='post' action='/comment/submit' style='padding-bottom: 0;' onsubmit='return verify();')
+        
+        h3(style='padding:0 1rem 0.3rem 0.5rem;float:left;width:10%;box-sizing: border-box;') Film Name: 
+        select#FilmId(name='FilmId' style='width:90%;')
+          each film in filmArray
+            option(value= film.filmName ) #{film.filmName}
+        textarea#textbox(name='comment' placeholder='Leave your comment here.')
+        button#submit.form-button(name='submit') Submit Comment
+        
+      div(style='padding: 0 2rem')
+        button#view.aside-button.view-comment(onclick='retrive();') View Comment
+        
+    #comments(style='margin-top: 4rem;')
+      
+  script(src='/javascripts/commentScript.js')
